@@ -25,13 +25,28 @@ class MutantApplicationTests {
 	void ADN_isMutant() {
 		String[] dnaMutant = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};							
 
+		System.out.println("************");
+		System.out.println("Testing Mutants ");
+		System.out.println("************");
 		assertTrue(mutantService.isMutant(dnaMutant));
+
+
+		String[] dnaMutant2 = {"AAAAAA","CAGTAC","TTATGT","AGAAGG","CACCTA","TCACTG"};							
+
+		System.out.println("************");
+		System.out.println("Testing Mutants 2 secuences");
+		System.out.println("************");
+		assertTrue(mutantService.isMutant(dnaMutant2));
 
 	}
 
 	@Test
 	void ADN_isHuman() {
-		String[] dnaMutant = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};							
+		String[] dnaMutant = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCTTA","TCACTG"};							
+
+		System.out.println("************");
+		System.out.println("Testing Human");
+		System.out.println("************");
 
 		assertFalse(mutantService.isMutant(dnaMutant));
 	}

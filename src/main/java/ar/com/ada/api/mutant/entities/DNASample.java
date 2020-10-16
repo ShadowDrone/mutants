@@ -19,13 +19,26 @@ public class DNASample {
         return this.dimensionIsOk() && this.lettersOk();
     }
 
-    private char[][] toMatrix() {
+    public char[][] toMatrix() {
 
         char[][] matrix = new char[this.dna.length][this.dna.length];
 
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 matrix[i][j] = this.dna[i].charAt(j);
+            }
+        }
+
+        return matrix;
+    }
+
+    public char[][] toMatrixInverted() {
+
+        char[][] matrix = new char[this.dna.length][this.dna.length];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                matrix[j][i] = this.dna[i].charAt(j);
             }
         }
 
