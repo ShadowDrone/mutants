@@ -2,9 +2,8 @@ package ar.com.ada.api.mutant.entities;
 
 public class DNASample {
 
-    private final static int MIN_SECUENCE =4;
+    private final static int MIN_SECUENCE = 4;
     private String[] dna;
-    
 
     public DNASample(String[] dna) {
         this.dna = dna;
@@ -14,8 +13,7 @@ public class DNASample {
         //dimensions
         //&&
         //only letter A, T, C, G
-        
-    
+
         return this.dimensionIsOk() && this.lettersOk();
     }
 
@@ -38,7 +36,7 @@ public class DNASample {
 
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
-                matrix[j][i] = this.dna[i].charAt(j);
+                matrix[i][matrix.length - j - 1] = this.dna[i].charAt(j);
             }
         }
 
@@ -51,7 +49,7 @@ public class DNASample {
         //String[] dnaMutant = {}					
         int arrayLenghtSecuenceWord = this.dna.length;
 
-        if(arrayLenghtSecuenceWord < MIN_SECUENCE)
+        if (arrayLenghtSecuenceWord < MIN_SECUENCE)
             return false;
 
         for (String secuence : dna) {
@@ -61,11 +59,11 @@ public class DNASample {
 
         return true;
     }
-    
+
     private boolean lettersOk() {
-        
+
         for (String secuence : dna) {
-            
+
             for (char letter : secuence.toCharArray()) {
                 if (letter != 'A' && letter != 'T' && letter != 'C' && letter != 'G')
                     return false;
@@ -73,5 +71,17 @@ public class DNASample {
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (String secuence : dna) {
+            sb.append("| ");
+            sb.append(secuence);
+            sb.append(" |\n");
+        }
+        return sb.toString();
     }
 }

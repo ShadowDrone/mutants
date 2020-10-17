@@ -8,12 +8,13 @@ import ar.com.ada.api.mutant.utils.MatrixDNAIterator;
 @Service
 public class MutantService {
 
-    public boolean isMutant(String[] dna){
-        
-   
+    public boolean isMutant(String[] dna) {
+
         MatrixDNAIterator iterator = new MatrixDNAIterator();
 
         DNASample sample = new DNASample(dna);
+
+        System.out.println(sample.toString());
 
         int matches = 0;
         int matchesByRows = 0;
@@ -21,11 +22,11 @@ public class MutantService {
         int matchesByDiagonals = 0;
 
         matchesByRows = iterator.matchesByRows(sample);
-        System.out.println("Matcheos por Rows "+ matchesByRows);
+        System.out.println("Matcheos por Rows " + matchesByRows);
         matchesByColumns = iterator.matchesByColumns(sample);
-        System.out.println("Matcheos por Columns "+ matchesByColumns);
+        System.out.println("Matcheos por Columns " + matchesByColumns);
         matchesByDiagonals = iterator.matchesByDiagonals(sample);
-        System.out.println("Matcheos por Diagonals "+ matchesByDiagonals);
+        System.out.println("Matcheos por Diagonals " + matchesByDiagonals);
 
         matches = matchesByRows + matchesByColumns + matchesByDiagonals;
 
