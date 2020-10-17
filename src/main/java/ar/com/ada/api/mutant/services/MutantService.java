@@ -93,4 +93,18 @@ public class MutantService {
         return matches > 1;
 
     }
+
+    public long countMutants() {
+
+        return mutantRepo.count();
+
+    }
+
+    public long countHumans() {
+
+        return humanRepo.count();
+
+    }
+
+
 }
