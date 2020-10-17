@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Mutant {
 
     private ObjectId _id;
+    private String uniqueHash;
     private String[] dna;
 
     public String get_id() {
@@ -25,5 +26,12 @@ public class Mutant {
         this.dna = dna;
     }
 
-    
+    public String getUniqueHash() {
+        return uniqueHash;
+    }
+
+    public void setUniqueHash(String uniqueHash) {
+        this.uniqueHash = uniqueHash;
+    }
+
 }

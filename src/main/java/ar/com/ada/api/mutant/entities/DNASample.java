@@ -1,5 +1,7 @@
 package ar.com.ada.api.mutant.entities;
 
+import ar.com.ada.api.mutant.security.Crypto;
+
 public class DNASample {
 
     private final static int MIN_SECUENCE = 4;
@@ -71,6 +73,20 @@ public class DNASample {
         }
 
         return true;
+    }
+
+    public String uniqueHash() {
+        StringBuilder sb = new StringBuilder();
+        for (String secuence : dna) {
+
+            sb.append(secuence + "|");
+
+        }
+        String dnaToHash = sb.toString();
+
+        String dnaHashed = Crypto.hash(dnaToHash, "Magneto Rulz");
+
+        return dnaHashed;
     }
 
     @Override

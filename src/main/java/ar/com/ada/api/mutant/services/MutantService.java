@@ -27,16 +27,35 @@ public class MutantService {
         this.humanRepo.save(human);
     }
 
+    public boolean exists(String[] dna) {
+
+        DNASample sample = new DNASample(dna);
+        String uniqueHash = sample.uniqueHash();
+
+        if (mutantRepo.findByUniqueHash(uniqueHash) != null)
+            return true;
+
+        if (humanRepo.findByUniqueHash(uniqueHash) != null)
+            return true;
+
+        return false;
+
+    }
+
     public Mutant registerSample(String[] dna) {
+
+        DNASample sample = new DNASample(dna);
 
         if (this.isMutant(dna)) {
             Mutant mutant = new Mutant();
             mutant.setDna(dna);
+            mutant.setUniqueHash(sample.uniqueHash());
             this.create(mutant);
             return mutant;
         } else {
             Human human = new Human();
             human.setDna(dna);
+            human.setUniqueHash(sample.uniqueHash());
             this.create(human);
             return null;
         }
