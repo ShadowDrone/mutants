@@ -48,7 +48,8 @@ public class MutantService {
 
         if (this.isMutant(dna)) {
             Mutant mutant = new Mutant();
-            mutant.setDna(dna);
+            //Solo para mutantes lo encripto
+            mutant.setDna(sample.encrypt());
             mutant.setUniqueHash(sample.uniqueHash());
             this.create(mutant);
             return mutant;

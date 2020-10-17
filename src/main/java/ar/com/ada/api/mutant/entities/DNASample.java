@@ -89,6 +89,24 @@ public class DNASample {
         return dnaHashed;
     }
 
+    public String[] encrypt() {
+
+        String[] dnaEncrypted = new String[dna.length];
+        for (int i = 0; i < dnaEncrypted.length; i++) {
+            dnaEncrypted[i] = Crypto.encrypt(dna[i], "*");
+        }
+        return dnaEncrypted;
+    }
+
+    public String[] decrypt() {
+
+        String[] dnaClear = new String[dna.length];
+        for (int i = 0; i < dnaClear.length; i++) {
+            dnaClear[i] = Crypto.decrypt(dna[i], "*");
+        }
+        return dnaClear;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
