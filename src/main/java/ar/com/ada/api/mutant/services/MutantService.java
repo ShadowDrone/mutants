@@ -1,6 +1,11 @@
 package ar.com.ada.api.mutant.services;
 
+import java.util.Date;
+import java.util.concurrent.Future;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.mutant.entities.DNASample;
@@ -106,5 +111,30 @@ public class MutantService {
 
     }
 
+    public Long countAll() {
+        System.out.println("Count ALL, Thread : " + Thread.currentThread().getId());
+        return this.countMutants() + this.countHumans();
+
+    }
+
+    @Async
+    public Future<Long> countMutantsAsync() {
+
+        long resultado = mutantRepo.count();
+        return new AsyncResult<Long>(resultado);
+
+    }
+
+    @Async
+    public void imprimirComoVamos() {
+        System.out.println("Creo que vamos bien...Empezando " + Thread.currentThread().getId());
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("Creo que vamos bien...Finalizado " + Thread.currentThread().getId());
+    }
 
 }

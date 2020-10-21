@@ -12,4 +12,7 @@ public class StatsResponse {
     @JsonProperty("ratio")
     public double ratio;
 
+    @JsonProperty("total_count")
+    public long totalCount;
+
 }
