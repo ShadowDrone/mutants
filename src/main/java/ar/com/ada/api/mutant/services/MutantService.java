@@ -47,7 +47,7 @@ public class MutantService {
 
     }
 
-    public Mutant registerSample(String[] dna) {
+    public Mutant registerSample(String[] dna, String name) {
 
         DNASample sample = new DNASample(dna);
 
@@ -56,6 +56,7 @@ public class MutantService {
             //Solo para mutantes lo encripto
             mutant.setDna(sample.encrypt());
             mutant.setUniqueHash(sample.uniqueHash());
+            mutant.setName(name);
             this.create(mutant);
             return mutant;
         } else {
@@ -135,6 +136,12 @@ public class MutantService {
             e.printStackTrace();
         }
         System.out.println("Creo que vamos bien...Finalizado " + Thread.currentThread().getId());
+    }
+
+    public Mutant firstMutant() {
+        Mutant m = mutantRepo.findAll().get(0);
+
+        return m;
     }
 
 }

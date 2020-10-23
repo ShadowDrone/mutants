@@ -9,6 +9,7 @@ public class Mutant {
     private ObjectId _id;
     private String uniqueHash;
     private String[] dna;
+    private String name;
 
     public String get_id() {
         return _id.toHexString();
@@ -32,6 +33,14 @@ public class Mutant {
 
     public void setUniqueHash(String uniqueHash) {
         this.uniqueHash = uniqueHash;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

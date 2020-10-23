@@ -48,7 +48,7 @@ public class MutantController {
             return ResponseEntity.badRequest().body(gr);
         }
 
-        Mutant mutant = this.mutantService.registerSample(req.dna);
+        Mutant mutant = this.mutantService.registerSample(req.dna, req.name);
 
         if (mutant != null) {
             gr.isOk = true;
