@@ -10,6 +10,7 @@ public class Mutant {
     private String uniqueHash;
     private String[] dna;
     private String name;
+    private String email;
 
     public String get_id() {
         return _id.toHexString();
@@ -41,6 +42,14 @@ public class Mutant {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

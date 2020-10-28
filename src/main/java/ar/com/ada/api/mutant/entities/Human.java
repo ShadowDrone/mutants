@@ -9,6 +9,7 @@ public class Human {
     private ObjectId _id;
     private String uniqueHash;
     private String[] dna;
+    private String email;
 
     public String get_id() {
         return _id.toHexString();
@@ -32,6 +33,14 @@ public class Human {
 
     public void setUniqueHash(String uniqueHash) {
         this.uniqueHash = uniqueHash;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }
