@@ -1,6 +1,7 @@
 package ar.com.ada.api.mutant.entities;
 
 import ar.com.ada.api.mutant.security.Crypto;
+import ar.com.ada.api.mutant.utils.StringUtils;
 
 public class DNASample {
 
@@ -62,7 +63,21 @@ public class DNASample {
         return true;
     }
 
-    private boolean lettersOk() {
+    public boolean lettersOk() { //Con REGEX
+        //dna = {"ATGCGAA","CAGTGCA","TTATGTA","AGAAGGA","CCCCTAA","TCACTGA","TCGAACT"};		
+
+        String regex = "^[ACTG]{4,}$";
+        for (String secuence : dna) {
+            if (!StringUtils.isMatch(regex, secuence))
+                return false;
+        }
+
+        return true;
+    }
+
+    private boolean lettersOkOldSchool() { //DEPRECATED
+
+        //dna = {"ATGCGAA","CAGTGCA","TTATGTA","AGAAGGA","CCCCTAA","TCACTGA","TCGAACT"};		
 
         for (String secuence : dna) {
 
@@ -118,4 +133,9 @@ public class DNASample {
         }
         return sb.toString();
     }
+
+    public String[] getDna() {
+        return dna;
+    }
+
 }

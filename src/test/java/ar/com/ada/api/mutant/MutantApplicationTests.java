@@ -260,53 +260,79 @@ class MutantApplicationTests {
 	void TestNames() {
 		String name1 = "Apocalypsis";
 
-		assertTrue(mutantService.nameIsValid(name1),"The name1 is invalid");
-
+		assertTrue(mutantService.nameIsValid(name1), "The name1 is invalid");
 
 		String name2 = "Omega Red";
 
-		assertTrue(mutantService.nameIsValid(name2),"The name2 is invalid");
+		assertTrue(mutantService.nameIsValid(name2), "The name2 is invalid");
 
 		String name3 = "1232132131";
 
-		assertFalse(mutantService.nameIsValid(name3),"The name3 is invalid");
-
+		assertFalse(mutantService.nameIsValid(name3), "The name3 is invalid");
 
 		String name4 = "";
 
-		assertFalse(mutantService.nameIsValid(name4),"The name4 is invalid");
+		assertFalse(mutantService.nameIsValid(name4), "The name4 is invalid");
 
 		String name5 = null;
 
-		assertFalse(mutantService.nameIsValid(name5),"The name5 is invalid");
-	
+		assertFalse(mutantService.nameIsValid(name5), "The name5 is invalid");
+
 		String name6 = "El ñato";
 
-		assertTrue(mutantService.nameIsValid(name6),"The name6 is invalid");
+		assertTrue(mutantService.nameIsValid(name6), "The name6 is invalid");
 
 		String name7 = "           Gambito";
 
-		assertFalse(mutantService.nameIsValid(name7),"The name7 is invalid");
+		assertFalse(mutantService.nameIsValid(name7), "The name7 is invalid");
 
 		String name7bis = "           Gambito        ";
 
-		assertFalse(mutantService.nameIsValid(name7bis),"The name7bis is invalid");
+		assertFalse(mutantService.nameIsValid(name7bis), "The name7bis is invalid");
 
 		String name8 = "Silver  Surfer";
 
-		assertFalse(mutantService.nameIsValid(name8),"The name8 is invalid");
-	
+		assertFalse(mutantService.nameIsValid(name8), "The name8 is invalid");
+
 		String name9 = "D'Artagnan";
 
-		assertTrue(mutantService.nameIsValid(name9),"The name9 is invalid");
+		assertTrue(mutantService.nameIsValid(name9), "The name9 is invalid");
 
 		String name10 = "Andrés";
 
-		assertTrue(mutantService.nameIsValid(name10),"The name10 is invalid");
-	
+		assertTrue(mutantService.nameIsValid(name10), "The name10 is invalid");
+
 		String name11 = "El Pingüino";
 
-		assertTrue(mutantService.nameIsValid(name11),"The name11 is invalid");
+		assertTrue(mutantService.nameIsValid(name11), "The name11 is invalid");
+	}
+
+	@Test
+	void ADN_LettersAreOk() {
+		String[] dna1 = { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG" };
+
+		DNASample sample = new DNASample(dna1);
+
+		assertTrue(sample.lettersOk());
+
+		String[] dna2 = { "ATGCGA", "CTGTGC", "TTATGT", "AGAATG", "CCCTTA", "TCACTG" };
+
+		sample = new DNASample(dna2);
+
+		assertTrue(sample.lettersOk());
+
+		String[] dna3 = { "ATGCGAX", "CXTGTGC", "TTATGT", "AGAATG", "CCCTTA", "TCACTG" };
+
+		sample = new DNASample(dna3);
+
+		assertFalse(sample.lettersOk());
+
+		String[] dna4 = { "ATGCGAT", "BATGTGC", "TTATGT", "AGAATG", "CCCTTA", "TCACTG" };
+
+		sample = new DNASample(dna4);
+
+		assertFalse(sample.lettersOk());
+
 	}
 
 }

@@ -12,7 +12,7 @@ import ar.com.ada.api.mutant.entities.DNASample;
 import ar.com.ada.api.mutant.entities.*;
 import ar.com.ada.api.mutant.repos.HumanRepository;
 import ar.com.ada.api.mutant.repos.MutantRepository;
-import ar.com.ada.api.mutant.utils.MatrixDNAIterator;
+import ar.com.ada.api.mutant.utils.*;
 import ar.com.ada.api.mutant.utils.StringUtils;
 
 @Service
@@ -152,7 +152,6 @@ public class MutantService {
      */
     public boolean nameIsValid(String name) {
 
-        
         //Con regex
         // [] => significan 1 caracter
         // a-z => significa desde 'a' a 'z'
@@ -166,14 +165,21 @@ public class MutantService {
         // ? => uno o ninguno
         // \p{L} => permite cualquier cosa que se pueda representar como letra en el mapa Unicode
         // \p{N} => permite cualquier cosa que sea representacion numerica
+        // 
         String regex = "^[a-zA-ZñÑáíéóú]\'?[a-zA-ZñÑáíéóú]*(\s[a-zA-ZñÑáíéóú]+)*$";
+        String regex2 = "^wolverine\\.\\d{6}$"; // ^\w+\.\d{6}$
+        String regex3 = "^holita\\.\\d{6}$";
+        //"^[Hh][Oo][Ll][Aa]\.[\d]{6,6}*$";
+
         //Este para super internacional
         //String regex = "^\\p{L}\'?\\p{L}*(\s\\p{L}+)*$";
 
-        return StringUtils.isMatch(regex, name);
+        //caracter unicode
+        //  \uD380
+
+        return StringUtils.isMatchCaseInsensitive(regex, name);
 
     }
-
 
     /**
      * Valida que el nombre sea solo letras y espacios
@@ -187,9 +193,8 @@ public class MutantService {
 
         for (char letter : name.toCharArray()) {
 
-            if (!((letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z') || letter == ' '
-            || letter == 'ñ' || letter == 'Ñ')
-                )
+            if (!((letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z') || letter == ' ' || letter == 'ñ'
+                    || letter == 'Ñ'))
                 return false;
 
         }
